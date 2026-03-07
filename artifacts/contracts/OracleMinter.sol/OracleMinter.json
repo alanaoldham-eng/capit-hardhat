@@ -1,0 +1,301 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "OracleMinter",
+  "sourceName": "contracts/OracleMinter.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "capitToken",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "owner_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "NotAuthorized",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "WellAlreadyMinted",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroAddress",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroProofHash",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ZeroWellId",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "allowed",
+          "type": "bool"
+        }
+      ],
+      "name": "AuthorizedCallerSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "wellIdHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "proofHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "OracleMintTriggered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "wellIdHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "proofHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "WellIdConsumed",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "capit",
+      "outputs": [
+        {
+          "internalType": "contract ICAPITToken",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "isAuthorizedCaller",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "wellIdHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "proofHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "mintWell",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "allowed",
+          "type": "bool"
+        }
+      ],
+      "name": "setAuthorizedCaller",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "wellMinted",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "wellProofHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x60a060405234801561001057600080fd5b5060405161073e38038061073e83398101604081905261002f91610121565b806001600160a01b03811661005e57604051631e4fbdf760e01b81526000600482015260240160405180910390fd5b610067816100b5565b506001600160a01b038216158061008557506001600160a01b038116155b156100a35760405163d92e233d60e01b815260040160405180910390fd5b506001600160a01b0316608052610154565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b80516001600160a01b038116811461011c57600080fd5b919050565b6000806040838503121561013457600080fd5b61013d83610105565b915061014b60208401610105565b90509250929050565b6080516105c96101756000396000818160c501526102cf01526105c96000f3fe608060405234801561001057600080fd5b50600436106100935760003560e01c806363b114c81161006657806363b114c814610137578063715018a61461015a5780638da5cb5b14610162578063d57e43bd14610173578063f2fde38b146101a157600080fd5b8063200267f514610098578063454bbd29146100ad5780634c9bce7c146100c057806359d14b4114610104575b600080fd5b6100ab6100a63660046104de565b6101b4565b005b6100ab6100bb36600461051c565b61037c565b6100e77f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b0390911681526020015b60405180910390f35b610127610112366004610558565b60036020526000908152604090205460ff1681565b60405190151581526020016100fb565b61012761014536600461057a565b60016020526000908152604090205460ff1681565b6100ab61040a565b6000546001600160a01b03166100e7565b61019361018136600461057a565b60026020526000908152604090205481565b6040519081526020016100fb565b6100ab6101af366004610558565b61041e565b6000546001600160a01b031633148015906101df57503360009081526003602052604090205460ff16155b156101fd5760405163ea8e4eb560e01b815260040160405180910390fd5b8161021b57604051637cf4e2c360e01b815260040160405180910390fd5b80610239576040516334d531a160e11b815260040160405180910390fd5b60008281526001602052604090205460ff16156102695760405163695a526960e01b815260040160405180910390fd5b6000828152600160208181526040808420805460ff19169093179092556002905280822083905551829184917f12e07fd81ba627303b15e6d605bebb8695ce72a471923c1c9fad1632cbc6c3f19190a360405163512c4b2b60e01b8152600481018390527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03169063512c4b2b90602401600060405180830381600087803b15801561031b57600080fd5b505af115801561032f573d6000803e3d6000fd5b505050508082336001600160a01b03167f7728d16e6f476d2fc6f69c11cfa427bf8573ff1a3d09e086bfd27b71aa5b3bd24260405161037091815260200190565b60405180910390a45050565b610384610461565b6001600160a01b0382166103ab5760405163d92e233d60e01b815260040160405180910390fd5b6001600160a01b038216600081815260036020908152604091829020805460ff191685151590811790915591519182527f1eff62a53441c7d0125c22f2a9a324e206b34efa41e19469d7efb9bb703d21a3910160405180910390a25050565b610412610461565b61041c600061048e565b565b610426610461565b6001600160a01b03811661045557604051631e4fbdf760e01b8152600060048201526024015b60405180910390fd5b61045e8161048e565b50565b6000546001600160a01b0316331461041c5760405163118cdaa760e01b815233600482015260240161044c565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b600080604083850312156104f157600080fd5b50508035926020909101359150565b80356001600160a01b038116811461051757600080fd5b919050565b6000806040838503121561052f57600080fd5b61053883610500565b91506020830135801515811461054d57600080fd5b809150509250929050565b60006020828403121561056a57600080fd5b61057382610500565b9392505050565b60006020828403121561058c57600080fd5b503591905056fea2646970667358221220ab7f26bad75d23f13dadafd32e1d1d6d0ea6fe2d98ddad84f6a9a6f335b7094b64736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100935760003560e01c806363b114c81161006657806363b114c814610137578063715018a61461015a5780638da5cb5b14610162578063d57e43bd14610173578063f2fde38b146101a157600080fd5b8063200267f514610098578063454bbd29146100ad5780634c9bce7c146100c057806359d14b4114610104575b600080fd5b6100ab6100a63660046104de565b6101b4565b005b6100ab6100bb36600461051c565b61037c565b6100e77f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b0390911681526020015b60405180910390f35b610127610112366004610558565b60036020526000908152604090205460ff1681565b60405190151581526020016100fb565b61012761014536600461057a565b60016020526000908152604090205460ff1681565b6100ab61040a565b6000546001600160a01b03166100e7565b61019361018136600461057a565b60026020526000908152604090205481565b6040519081526020016100fb565b6100ab6101af366004610558565b61041e565b6000546001600160a01b031633148015906101df57503360009081526003602052604090205460ff16155b156101fd5760405163ea8e4eb560e01b815260040160405180910390fd5b8161021b57604051637cf4e2c360e01b815260040160405180910390fd5b80610239576040516334d531a160e11b815260040160405180910390fd5b60008281526001602052604090205460ff16156102695760405163695a526960e01b815260040160405180910390fd5b6000828152600160208181526040808420805460ff19169093179092556002905280822083905551829184917f12e07fd81ba627303b15e6d605bebb8695ce72a471923c1c9fad1632cbc6c3f19190a360405163512c4b2b60e01b8152600481018390527f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03169063512c4b2b90602401600060405180830381600087803b15801561031b57600080fd5b505af115801561032f573d6000803e3d6000fd5b505050508082336001600160a01b03167f7728d16e6f476d2fc6f69c11cfa427bf8573ff1a3d09e086bfd27b71aa5b3bd24260405161037091815260200190565b60405180910390a45050565b610384610461565b6001600160a01b0382166103ab5760405163d92e233d60e01b815260040160405180910390fd5b6001600160a01b038216600081815260036020908152604091829020805460ff191685151590811790915591519182527f1eff62a53441c7d0125c22f2a9a324e206b34efa41e19469d7efb9bb703d21a3910160405180910390a25050565b610412610461565b61041c600061048e565b565b610426610461565b6001600160a01b03811661045557604051631e4fbdf760e01b8152600060048201526024015b60405180910390fd5b61045e8161048e565b50565b6000546001600160a01b0316331461041c5760405163118cdaa760e01b815233600482015260240161044c565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b600080604083850312156104f157600080fd5b50508035926020909101359150565b80356001600160a01b038116811461051757600080fd5b919050565b6000806040838503121561052f57600080fd5b61053883610500565b91506020830135801515811461054d57600080fd5b809150509250929050565b60006020828403121561056a57600080fd5b61057382610500565b9392505050565b60006020828403121561058c57600080fd5b503591905056fea2646970667358221220ab7f26bad75d23f13dadafd32e1d1d6d0ea6fe2d98ddad84f6a9a6f335b7094b64736f6c63430008140033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

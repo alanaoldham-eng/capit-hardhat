@@ -1,0 +1,28 @@
+{
+  "name": "capit-hardhat",
+  "version": "1.1.0",
+  "description": "CAPIT token protocol (new +1 mint model) on Base (Hardhat project)",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "smoke:local": "hardhat capit:smoke:checks --network hardhat"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.0",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^6.0.0",
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.0",
+    "chai": "^4.3.10",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.11.1",
+    "hardhat": "^2.28.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2"
+  }
+}

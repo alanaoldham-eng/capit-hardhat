@@ -1,0 +1,45 @@
+{
+  "network": "localhost",
+  "deployer": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+  "inputs": {
+    "genesisSupply": "1000000000000000000000000",
+    "launchTime": "0",
+    "publicRecipient": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "devBeneficiary": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+    "protocolMultisig": "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
+    "mintAuthority": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+    "quoteToken": "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
+    "router": "0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65",
+    "lpPair": "0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc",
+    "lpLocker": "0x976EA74026E726554dB657fA54763abd0C3a0aa9",
+    "cooldownSeconds": "300",
+    "maxCapitPer30d": "1000000000000000000000",
+    "maxQuotePer30d": "1000000000"
+  },
+  "contracts": {
+    "CAPITToken": {
+      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "txHash": "0x6707981c03569101d137123fc72833d82bfa4a4a49aa1dc651d2cb5cffb992e9"
+    },
+    "DevVesting": {
+      "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "txHash": "0x910dc8f0137e2bb571a8821177606d5d63e1ec3072490e19310c27face99ae1b"
+    },
+    "ReserveController": {
+      "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+      "txHash": "0xe23eeededcc274ff6a7f0e0b2debda525d14603523a298c0fa83df6a963f1b83"
+    },
+    "OracleMinter": {
+      "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      "txHash": "0x691964668717ca4d8bc71290608549ea80e4347c8d267eda50c85845c476450b"
+    }
+  },
+  "genesis": {
+    "txHash": "0x9d8b9cc432708d8b54f291048ea0cacf3683d1c4fb15fa32a333f9ec7938db1a",
+    "genesisSupply": "1000000000000000000000000"
+  },
+  "smokeChecks": {
+    "ranAt": "2026-02-28T17:41:09.348Z",
+    "status": "PASS"
+  }
+}
