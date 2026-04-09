@@ -31,4 +31,8 @@ npm test
 
 ## Deployment
 
-See **DEPLOYMENT.md**.
+See **DEPLOYMENT.md** for:
+
+- Sepolia re-deployment steps
+- Base mainnet preflight checklist
+- PRIVATE_KEY switch runbook for manual mint testing

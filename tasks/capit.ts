@@ -38,6 +38,13 @@ function requireConfirm(confirm?: boolean) {
   }
 }
 
+function requireLiveNetworkSigner(hre: HardhatRuntimeEnvironment) {
+  const liveNetworks = new Set(["base-sepolia", "base"]);
+  if (liveNetworks.has(hre.network.name) && (!process.env.PRIVATE_KEY || process.env.PRIVATE_KEY.trim().length === 0)) {
+    throw new Error(`Missing PRIVATE_KEY for network ${hre.network.name}. Set PRIVATE_KEY in your .env before running transaction tasks.`);
+  }
+}
+
 function toBigInt(v: string) {
   // allow decimal strings only
   if (!/^\d+$/.test(v)) throw new Error(`Expected integer string, got: ${v}`);
@@ -274,6 +281,7 @@ task("capit:deploy:core", "Deploy CAPIT core contracts")
   .addFlag("confirm")
   .setAction(async (args, hre) => {
     requireConfirm(args.confirm);
+    requireLiveNetworkSigner(hre);
 
     const [deployer] = await hre.ethers.getSigners();
     console.log(`Network: ${hre.network.name}`);
@@ -392,6 +400,7 @@ task("capit:init:genesis", "Initialize genesis supply and allocations")
   .addFlag("confirm")
   .setAction(async (args, hre) => {
     requireConfirm(args.confirm);
+    requireLiveNetworkSigner(hre);
 
     const capitAddr = normAddr(args.capit);
     const publicRecipient = normAddr(args.publicRecipient);
@@ -444,6 +453,7 @@ task("capit:setup:oracle", "Set mint authority prior to renouncing ownership")
   .addFlag("confirm")
   .setAction(async (args, hre) => {
     requireConfirm(args.confirm);
+    requireLiveNetworkSigner(hre);
 
     const capitAddr = normAddr(args.capit);
     const mintAuthority = normAddr(args.mintAuthority);
@@ -478,6 +488,7 @@ task("capit:renounce", "Renounce CAPITToken ownership permanently")
   .addFlag("confirm")
   .setAction(async (args, hre) => {
     requireConfirm(args.confirm);
+    requireLiveNetworkSigner(hre);
 
     const capitAddr = normAddr(args.capit);
     const capit = await hre.ethers.getContractAt("CAPITToken", capitAddr);
@@ -560,6 +571,7 @@ task("capit:verify:all", "Verify all deployed contracts on BaseScan")
   .addFlag("confirm")
   .setAction(async (args, hre) => {
     requireConfirm(args.confirm);
+    requireLiveNetworkSigner(hre);
 
     const deploymentsFile = deploymentsPath(hre);
     const state = readJsonIfExists(deploymentsFile);
@@ -597,6 +609,15 @@ task("capit:verify:all", "Verify all deployed contracts on BaseScan")
         BigInt(state.inputs.cooldownSeconds),
         BigInt(state.inputs.maxCapitPer30d),
         BigInt(state.inputs.maxQuotePer30d)
+      ]
+    });
+
+    console.log("Verifying OracleMinter...");
+    await hre.run("verify:verify", {
+      address: contracts.OracleMinter.address,
+      constructorArguments: [
+        contracts.CAPITToken.address,
+        normAddr(state.inputs.protocolMultisig)
       ]
     });
 
@@ -678,6 +699,7 @@ task("capit:mint:manual", "Manual +1 mint via OracleMinter (Phase 1)")
   .addFlag("confirm")
   .setAction(async (args, hre) => {
     requireConfirm(args.confirm);
+    requireLiveNetworkSigner(hre);
 
     const oracleMinter = await hre.ethers.getContractAt("OracleMinter", normAddr(args.oracleMinter));
     const caller = await resolveSigner(hre, args.callerSigner);
